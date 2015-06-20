@@ -31,10 +31,10 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller{
-	
+
 	public $media_type;
 
-	
+
 	public $components = array(
 	        'Session',
 	        'Auth' => array(
@@ -46,14 +46,14 @@ class AppController extends Controller{
 	public $actsAs = array('Containable');
 
 	 function beforeFilter() {
-	 	
+
 	 	if (strtoupper(@$this->params['named']['media-type']) == 'JSON') {
 	 		$this->autoRender = false;
 	 		header('Access-Control-Allow-Origin: *');
 	 		$this->media_type = 'JSON';
 
 	 	}
-        $this->Auth->allow('add');
+        $this->Auth->allow('*');
     }
 
 
